@@ -12,11 +12,11 @@ public class RabbitMQEventBus(
 {
     public async Task PublishAsync<T>(T message, string queueName)
     {
-        var _factory = new ConnectionFactory();
-        _factory.HostName = hostname;
-        _factory.ClientProvidedName = connectionName;
+        var factory = new ConnectionFactory();
+        factory.HostName = hostname;
+        factory.ClientProvidedName = connectionName;
 
-        IConnection conn = await _factory.CreateConnectionAsync();
+        IConnection conn = await factory.CreateConnectionAsync();
 
         IChannel channel = await conn.CreateChannelAsync();
 

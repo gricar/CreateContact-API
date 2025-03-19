@@ -1,0 +1,12 @@
+services:
+  createcontact.api:
+    image: ${DOCKER_REGISTRY-}createcontactapi
+    build:
+      context: .
+      dockerfile: src/CreateContact.API/Dockerfile
+    networks:
+      - contacts-network
+
+networks:
+  contacts-network:
+    driver: bridge

@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CreateContact.Application\CreateContact.Application.csproj" />
+    <ProjectReference Include="..\CreateContact.Infrastructure\CreateContact.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

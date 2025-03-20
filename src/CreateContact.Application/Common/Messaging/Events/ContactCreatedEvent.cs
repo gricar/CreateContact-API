@@ -5,4 +5,4 @@ public record ContactCreatedEvent(
     int DDDCode,
     string Phone,
     string? Email
-    ) : IntegrationEvent;
+    );

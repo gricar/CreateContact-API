@@ -1,9 +1,12 @@
 using CreateContact.API.Middlewares;
 using CreateContact.Application;
+using CreateContact.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.ConfigureApplicationServices(builder.Configuration);
+builder.Services
+    .ConfigureApplicationServices(builder.Configuration)
+    .ConfigurePersistenceServices(builder.Configuration);
 
 builder.Services.AddControllers();
 

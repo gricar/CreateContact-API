@@ -5,32 +5,39 @@ using System.Text.Json;
 
 namespace CreateContact.Application.Common.Messaging;
 
-public class RabbitMQEventBus(
-    string hostname,
-    string connectionName,
-    ILogger<RabbitMQEventBus> logger) : IEventBus
+public class RabbitMQEventBus : IEventBus
 {
+    private readonly IConnection _connection;
+    private readonly IModel _channel;
+    private readonly ILogger<RabbitMQEventBus> _logger;
+
+    public RabbitMQEventBus(
+        string hostname,
+        string connectionName,
+        ILogger<RabbitMQEventBus> logger)
+    {
+        var factory = new ConnectionFactory
+        {
+            HostName = hostname,
+            ClientProvidedName = connectionName
+        };
+
+        _connection = factory.CreateConnection();
+
+        _channel = _connection.CreateModel();
+
+        _logger = logger;
+    }
+
     public async Task PublishAsync<T>(T message, string queueName)
     {
-        var factory = new ConnectionFactory();
-        factory.HostName = hostname;
-        factory.ClientProvidedName = connectionName;
-
-        IConnection conn = await factory.CreateConnectionAsync();
-
-        IChannel channel = await conn.CreateChannelAsync();
-
-        await channel.QueueDeclareAsync(queueName, true, false, false, null);
+        _channel.QueueDeclare(queueName, true, false, false, null);
 
         var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
 
-        var props = new BasicProperties();
+        _channel.BasicPublish(string.Empty, queueName, true, null, body);
 
-        props.Persistent = true;
-
-        await channel.BasicPublishAsync(string.Empty, queueName, true, props, body);
-
-        logger.LogInformation("Message published to queue {QueueName} with message: {Message}", queueName, message);
+        _logger.LogInformation("Message published to queue {QueueName} with message: {Message}", queueName, message);
 
         await Task.CompletedTask;
     }

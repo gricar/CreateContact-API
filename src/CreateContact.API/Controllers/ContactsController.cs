@@ -17,14 +17,15 @@ namespace CreateContact.API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(CreateContactCommandResponse), Status200OK)]
+        [ProducesResponseType(typeof(CreateContactCommandResponse), Status202Accepted)]
         [ProducesResponseType(Status400BadRequest)]
+        [ProducesResponseType(Status409Conflict)]
         public async Task<ActionResult<CreateContactCommandResponse>> PostContact(
             [FromBody] CreateContactCommand command,
             CancellationToken cancellationToken)
         {
             var response = await _dispatcher.Send(command, cancellationToken);
-            return Ok(response);
+            return Accepted(response);
         }
     }
 }

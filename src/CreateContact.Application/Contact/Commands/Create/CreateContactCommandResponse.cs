@@ -1,3 +1,3 @@
 ﻿namespace CreateContact.Application.Contact.Commands.Create;
 
-public sealed record CreateContactCommandResponse(string message);
+public sealed record CreateContactCommandResponse(string message, string status = "Pending");

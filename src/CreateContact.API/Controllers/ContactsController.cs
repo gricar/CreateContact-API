@@ -21,8 +21,7 @@ namespace CreateContact.API.Controllers
         [ProducesResponseType(Status400BadRequest)]
         [ProducesResponseType(Status409Conflict)]
         public async Task<ActionResult<CreateContactCommandResponse>> PostContact(
-            [FromBody] CreateContactCommand command,
-            CancellationToken cancellationToken)
+            [FromBody] CreateContactCommand command, CancellationToken cancellationToken)
         {
             var response = await _dispatcher.Send(command, cancellationToken);
             return Accepted(response);

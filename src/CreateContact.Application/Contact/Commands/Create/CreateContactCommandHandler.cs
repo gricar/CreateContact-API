@@ -14,16 +14,17 @@ public class CreateContactCommandHandler(
     {
         await EnsureContactIsUniqueAsync(command);
 
-        //var contact = Contact.Create(command.Name, command.DDDCode, command.Phone, command.Email);
+        var contact = Domain.Entities.Contact.Create(
+            command.Name, command.DDDCode, command.Phone, command.Email);
 
-        var contact = new ContactCreatedEvent(
-            command.Name,
-            command.DDDCode,
-            command.Phone,
-            command.Email
+        var contactEvent = new ContactCreatedEvent(
+            contact.Name,
+            contact.Region.DddCode,
+            contact.Phone,
+            contact.Email
         );
 
-        await eventBus.PublishAsync(contact, "contact-created");
+        await eventBus.PublishAsync(contactEvent, "contact-created");
 
         return new CreateContactCommandResponse("Contact creation request accepted and is being processed.");
     }

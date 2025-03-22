@@ -1,5 +1,3 @@
-# Acesse https://aka.ms/customizecontainer para saber como personalizar seu contêiner de depuração e como o Visual Studio usa este Dockerfile para criar suas imagens para uma depuração mais rápida.
-
 # Esta fase é usada durante a execução no VS no modo rápido (Padrão para a configuração de Depuração)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
@@ -14,6 +12,8 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/CreateContact.API/CreateContact.API.csproj", "src/CreateContact.API/"]
 COPY ["src/CreateContact.Application/CreateContact.Application.csproj", "src/CreateContact.Application/"]
+COPY ["src/CreateContact.Domain/CreateContact.Domain.csproj", "src/CreateContact.Domain/"]
+COPY ["src/CreateContact.Infrastructure/CreateContact.Infrastructure.csproj", "src/CreateContact.Infrastructure/"]
 RUN dotnet restore "./src/CreateContact.API/CreateContact.API.csproj"
 COPY . .
 WORKDIR "/src/src/CreateContact.API"

@@ -4,9 +4,37 @@ services:
     build:
       context: .
       dockerfile: src/CreateContact.API/Dockerfile
+    ports:
+        - "8080:5050"
     networks:
       - contacts-network
+   
+  prometheus:
+    image: prom/prometheus:v2.53.4
+    # volumes:
+    #   - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    networks:
+      - contacts-network
+
+
+  grafana:
+    image: grafana/grafana:11.5.2
+    ports:
+        - 3001:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    # volumes:
+    #   - grafana-data:/var/lib/grafana
+    networks:
+        - contacts-network
 
 networks:
   contacts-network:
     driver: bridge
+
+# volumes:
+#   prometheus-data:
+#   grafana-data:

@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.Domain", "src\CreateContact.Domain\CreateContact.Domain.csproj", "{B2894C2E-734A-44E5-B026-9B703F051664}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{90ED7294-5EE3-40A8-B771-3C1C2338CEAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.Domain.Tests", "tests\CreateContact.Domain.Tests\CreateContact.Domain.Tests.csproj", "{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{B2894C2E-734A-44E5-B026-9B703F051664}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2894C2E-734A-44E5-B026-9B703F051664}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2894C2E-734A-44E5-B026-9B703F051664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{37DFE6FE-ABFC-4118-869D-72C00CB0A756} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{51CBF2B8-107C-4E54-9557-3B97C899FC62} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B2894C2E-734A-44E5-B026-9B703F051664} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE} = {90ED7294-5EE3-40A8-B771-3C1C2338CEAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C048CED9-F772-42CE-97B7-868114354A62}

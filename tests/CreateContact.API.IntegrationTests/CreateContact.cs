@@ -34,9 +34,9 @@ namespace CreateContact.API.IntegrationTests
             var response = await _apiClient.PostAsJsonAsync("/api/Contacts", contact);
 
             var result = await _rabbitMqConsumer.TryToConsumeAsync(queueName, TimeSpan.FromSeconds(5));
-            _output.WriteLine($"Mensagem recebida no RabbitMQ: {result}");
 
             var responseText = await response.Content.ReadAsStringAsync();
+            _output.WriteLine($"responseText {responseText}");
             var msg = JsonSerializer.Deserialize<CreateContactCommandResponse>(responseText);
 
             // Assert

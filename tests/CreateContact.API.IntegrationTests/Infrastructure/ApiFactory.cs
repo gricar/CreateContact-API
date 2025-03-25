@@ -1,9 +1,12 @@
 ﻿using CreateContact.Application.Common.Messaging;
+using CreateContact.Infrastructure;
 using DotNet.Testcontainers.Builders;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Testcontainers.MsSql;
 using Testcontainers.RabbitMq;
 
 namespace CreateContact.API.IntegrationTests.Infrastructure;
@@ -14,12 +17,18 @@ public class ApiFactory : WebApplicationFactory<IApiAssemblyMarker>, IAsyncLifet
         .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(5672))
         .Build();
 
+    private readonly MsSqlContainer _dbContainer = new MsSqlBuilder()
+        .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(1433))
+        .Build();
+
     public RabbitMqConsumer RabbitMqConsumer;
 
     public async Task InitializeAsync()
     {
         await _rabbitMqContainer.StartAsync();
         RabbitMqConsumer = new RabbitMqConsumer(_rabbitMqContainer.GetConnectionString());
+
+        await _dbContainer.StartAsync();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -35,13 +44,20 @@ public class ApiFactory : WebApplicationFactory<IApiAssemblyMarker>, IAsyncLifet
                 //var logger = sp.GetRequiredService<ILogger<RabbitMQEventBus>>();
                 return new RabbitMQEventBus(_rabbitMqContainer.GetConnectionString(), "test-container");
             });
+
+            // Database
+            services.Remove<DbContextOptions<ApplicationDbContext>>();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(_dbContainer.GetConnectionString()));
         });
 
         base.ConfigureWebHost(builder);
     }
 
-    Task IAsyncLifetime.DisposeAsync()
+    async Task IAsyncLifetime.DisposeAsync()
     {
-        return _rabbitMqContainer.DisposeAsync().AsTask();
+        await _rabbitMqContainer.StopAsync();
+        await _dbContainer.StopAsync();
     }
 }

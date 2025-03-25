@@ -18,7 +18,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    //await app.InitializeDatabaseAsync();
+    await app.InitializeDatabaseAsync();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {

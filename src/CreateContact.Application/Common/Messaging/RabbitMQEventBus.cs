@@ -17,7 +17,6 @@ public class RabbitMQEventBus : IEventBus
         var factory = new ConnectionFactory
         {
             Uri = new Uri(uri),
-            //HostName = hostname,
             ClientProvidedName = connectionName
         };
 

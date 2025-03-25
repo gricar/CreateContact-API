@@ -24,7 +24,7 @@ public static class DependecyInjection
         {
             //var logger = sp.GetRequiredService<ILogger<RabbitMQEventBus>>();
             //var hostname = configuration["MessageBroker:Host"]!;
-            var uri = configuration["MessageBroker:Uri"]!;
+            var uri = configuration.GetConnectionString("RabbitMq")!;
             var connectionName = configuration["MessageBroker:ConnectionName"]!;
             return new RabbitMQEventBus(uri, connectionName);
         });

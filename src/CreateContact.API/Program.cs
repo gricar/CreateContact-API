@@ -1,6 +1,7 @@
 using CreateContact.API.Middlewares;
 using CreateContact.Application;
 using CreateContact.Infrastructure;
+using CreateContact.Infrastructure.Extensions;
 using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);

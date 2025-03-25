@@ -1,6 +1,7 @@
 using CreateContact.API.Middlewares;
 using CreateContact.Application;
 using CreateContact.Infrastructure;
+using CreateContact.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    await app.InitializeDatabaseAsync();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {

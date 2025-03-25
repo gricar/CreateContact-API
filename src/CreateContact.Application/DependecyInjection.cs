@@ -4,7 +4,6 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace CreateContact.Application;
 
@@ -23,10 +22,11 @@ public static class DependecyInjection
 
         services.AddSingleton<IEventBus>(sp =>
         {
-            var logger = sp.GetRequiredService<ILogger<RabbitMQEventBus>>();
-            var hostname = configuration["MessageBroker:Host"]!;
+            //var logger = sp.GetRequiredService<ILogger<RabbitMQEventBus>>();
+            //var hostname = configuration["MessageBroker:Host"]!;
+            var uri = configuration["MessageBroker:Uri"]!;
             var connectionName = configuration["MessageBroker:ConnectionName"]!;
-            return new RabbitMQEventBus(hostname, connectionName, logger);
+            return new RabbitMQEventBus(uri, connectionName);
         });
 
         return services;

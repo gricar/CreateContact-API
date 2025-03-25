@@ -1,7 +1,7 @@
 using CreateContact.API.Middlewares;
 using CreateContact.Application;
 using CreateContact.Infrastructure;
-using CreateContact.Infrastructure.Extensions;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +18,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    await app.InitializeDatabaseAsync();
+    //await app.InitializeDatabaseAsync();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
@@ -28,6 +28,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
+
+app.UseMetricServer();
+
+app.UseHttpMetrics();
 
 app.MapControllers();
 

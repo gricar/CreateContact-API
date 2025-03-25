@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
 
@@ -9,16 +8,15 @@ public class RabbitMQEventBus : IEventBus
 {
     private readonly IConnection _connection;
     private readonly IModel _channel;
-    private readonly ILogger<RabbitMQEventBus> _logger;
+    //private readonly ILogger<RabbitMQEventBus> _logger;
 
     public RabbitMQEventBus(
-        string hostname,
-        string connectionName,
-        ILogger<RabbitMQEventBus> logger)
+        string uri,
+        string connectionName)
     {
         var factory = new ConnectionFactory
         {
-            HostName = hostname,
+            Uri = new Uri(uri),
             ClientProvidedName = connectionName
         };
 
@@ -26,7 +24,7 @@ public class RabbitMQEventBus : IEventBus
 
         _channel = _connection.CreateModel();
 
-        _logger = logger;
+        //_logger = logger;
     }
 
     public async Task PublishAsync<T>(T message, string queueName)
@@ -37,7 +35,7 @@ public class RabbitMQEventBus : IEventBus
 
         _channel.BasicPublish(string.Empty, queueName, true, null, body);
 
-        _logger.LogInformation("Message published to queue {QueueName} with message: {Message}", queueName, message);
+        //_logger.LogInformation("Message published to queue {QueueName} with message: {Message}", queueName, message);
 
         await Task.CompletedTask;
     }

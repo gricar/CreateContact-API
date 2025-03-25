@@ -5,19 +5,21 @@ VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.API", "src\CreateContact.API\CreateContact.API.csproj", "{D47DD814-3CBF-48F7-818C-C0896742FD26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateContact.API", "src\CreateContact.API\CreateContact.API.csproj", "{D47DD814-3CBF-48F7-818C-C0896742FD26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.Application", "src\CreateContact.Application\CreateContact.Application.csproj", "{37DFE6FE-ABFC-4118-869D-72C00CB0A756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateContact.Application", "src\CreateContact.Application\CreateContact.Application.csproj", "{37DFE6FE-ABFC-4118-869D-72C00CB0A756}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.Infrastructure", "src\CreateContact.Infrastructure\CreateContact.Infrastructure.csproj", "{51CBF2B8-107C-4E54-9557-3B97C899FC62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateContact.Infrastructure", "src\CreateContact.Infrastructure\CreateContact.Infrastructure.csproj", "{51CBF2B8-107C-4E54-9557-3B97C899FC62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.Domain", "src\CreateContact.Domain\CreateContact.Domain.csproj", "{B2894C2E-734A-44E5-B026-9B703F051664}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateContact.Domain", "src\CreateContact.Domain\CreateContact.Domain.csproj", "{B2894C2E-734A-44E5-B026-9B703F051664}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{90ED7294-5EE3-40A8-B771-3C1C2338CEAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.Domain.Tests", "tests\CreateContact.Domain.Tests\CreateContact.Domain.Tests.csproj", "{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateContact.Domain.Tests", "tests\CreateContact.Domain.Tests\CreateContact.Domain.Tests.csproj", "{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateContact.API.IntegrationTests", "tests\CreateContact.API.IntegrationTests\CreateContact.API.IntegrationTests.csproj", "{71F7C0F8-C40D-4E46-A22B-8358F491A72B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F7C0F8-C40D-4E46-A22B-8358F491A72B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F7C0F8-C40D-4E46-A22B-8358F491A72B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F7C0F8-C40D-4E46-A22B-8358F491A72B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F7C0F8-C40D-4E46-A22B-8358F491A72B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{51CBF2B8-107C-4E54-9557-3B97C899FC62} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B2894C2E-734A-44E5-B026-9B703F051664} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{D56BBFA4-B95F-4D51-8E49-1288A28DCBDE} = {90ED7294-5EE3-40A8-B771-3C1C2338CEAA}
+		{71F7C0F8-C40D-4E46-A22B-8358F491A72B} = {90ED7294-5EE3-40A8-B771-3C1C2338CEAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C048CED9-F772-42CE-97B7-868114354A62}

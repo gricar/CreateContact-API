@@ -29,6 +29,10 @@ public static class DependecyInjection
             return new RabbitMQEventBus(uri, connectionName);
         });
 
+        services.AddHealthChecks()
+            .AddSqlServer(configuration.GetConnectionString("Database")!, name: "SQL Server")
+            .AddRabbitMQ(configuration.GetConnectionString("RabbitMQ")!, name: "RabbitMQ");
+
         return services;
     }
 }

@@ -1,7 +1,7 @@
 using CreateContact.API.Middlewares;
 using CreateContact.Application;
 using CreateContact.Infrastructure;
-//using CreateContact.Infrastructure.Extensions;
+using CreateContact.Infrastructure.Extensions;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Prometheus;
@@ -21,7 +21,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    //await app.InitializeDatabaseAsync(); //contact-persistence micro service applies this
+    await app.InitializeDatabaseAsync(); //contact-persistence micro service applies this
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {

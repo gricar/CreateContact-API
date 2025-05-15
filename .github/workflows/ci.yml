@@ -1,8 +1,6 @@
 name: CI Pipeline - Contact Microservice API
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 

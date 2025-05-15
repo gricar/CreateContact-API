@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: create-contact
+  labels:
+    app: contact-api
+    service: create
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contact-api
+      service: create
+  template:
+    metadata:
+      labels:
+        app: contact-api
+        service: create
+    spec:
+      containers:
+        - name: create-contact
+          image: gricardo10/create-contact-api:1.0.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: create-contact-config
+                  key: AppEnv
+            - name: ConnectionStrings__Database
+              valueFrom:
+                configMapKeyRef:
+                  name: create-contact-config
+                  key: dbConnString
+            - name: ConnectionStrings__RabbitMq
+              valueFrom:
+                configMapKeyRef:
+                  name: create-contact-config
+                  key: rabbitConnString
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

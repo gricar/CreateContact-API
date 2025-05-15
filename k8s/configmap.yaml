@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: create-contact-config
+data:
+  AppEnv: "Development"
+  dbConnString: "Server=mssql-svc;Database=ContactManagerDb;User Id=sa;Password=P@ssw0rd1;Encrypt=False;TrustServerCertificate=True"
+  rabbitConnString: "amqp://rabbitmq-svc:5672"

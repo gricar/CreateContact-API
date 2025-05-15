@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: create-contact
-          image: gricardo10/create-contact-api:1.0.1
+          image: gricardo10/create-contact-api:latest
           ports:
             - containerPort: 8080
           env:

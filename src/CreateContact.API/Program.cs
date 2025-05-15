@@ -38,8 +38,6 @@ app.UseHttpMetrics();
 
 app.MapControllers();
 
-app.MapGet("/", () => "Hello From Create MS");
-
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
